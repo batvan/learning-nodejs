@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test AJAX Calls</title>
+
+	<script src="assets/js/jquery-1.12.4.js"></script>
+</head>
+<body>
+	<button id="getButton" onclick="get()">GET</button>
+
+	<pre id="getReponse"></pre>
+
+	<script>
+		function get() {
+			$.ajax({
+				type: 'GET',
+				url: 'http://localhost:8000/ajaxcall',
+				dataType: 'json'
+			})
+			.done(function(data) {
+				console.log('GET response:', JSON.stringify(data, "", 2));
+				$('#getReponse').html(JSON.stringify(data, "", 2));
+			})
+			.fail(function(jqXHR, textStatus, err) {
+				console.log('AJAX error response:', textStatus);
+			});
+		}
+	</script>
+</body>
+</html>
